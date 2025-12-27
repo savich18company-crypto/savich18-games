@@ -3,279 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savich18 Games - Indie Game Studio</title>
+    <title>Protocol Zero - Savich18 Games</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-        
+
         body {
-            background-color: #0d1117;
-            color: #f0f6fc;
-            line-height: 1.6;
+            background: #0a0a0f;
+            color: #e0e0e0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(40, 10, 60, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(20, 40, 80, 0.1) 0%, transparent 20%);
         }
-        
+
         .container {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        /* Header & Navigation */
+
+        /* Header */
         header {
-            background-color: #161b22;
-            padding: 20px 0;
-            border-bottom: 2px solid #30363d;
-            position: sticky;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 40, 80, 0.3);
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
+            padding: 20px 0;
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 28px;
             font-weight: 800;
-            color: #58a6ff;
+            background: linear-gradient(135deg, #ff2850 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
-        
-        .logo span {
-            color: #f78166;
+
+        .studio-tag {
+            font-size: 14px;
+            color: #8a2be2;
+            margin-left: 10px;
+            font-weight: 300;
         }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 40px 0;
         }
-        
-        nav a {
-            color: #c9d1d9;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-        
-        nav a:hover, nav a.active {
-            background-color: #238636;
-            color: white;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 100px 0;
-            background: linear-gradient(rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.9)), 
-                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
+
+        /* Game Header */
+        .game-header {
             text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #f0f6fc;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: #8b949e;
-        }
-        
-        .highlight {
-            color: #58a6ff;
-            font-weight: 700;
-        }
-        
-        /* About Section */
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #f0f6fc;
+            margin-bottom: 60px;
             position: relative;
         }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, #238636, #58a6ff);
-            margin: 15px auto;
-            border-radius: 2px;
+
+        .game-title {
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff2850 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
         }
-        
-        .about-content {
+
+        .game-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff2850, transparent);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #b0b0c0;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        /* Game Showcase */
+        .game-showcase {
+            position: relative;
+            margin: 60px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 60px rgba(255, 40, 80, 0.3),
+                0 0 100px rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(255, 40, 80, 0.2);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4287530/656e617b3d6cd090bd6f9549c897662cde01d42d/header.jpg?t=1766829002');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
-            gap: 50px;
+            justify-content: center;
+            position: relative;
         }
-        
-        .about-text {
-            flex: 1;
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 40, 80, 0.1),
+                rgba(138, 43, 226, 0.1)
+            );
+            pointer-events: none;
         }
-        
-        .about-text p {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #8b949e;
+
+        .game-tagline {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            max-width: 800px;
+            padding: 0 20px;
+            line-height: 1.3;
         }
-        
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
+
+        /* Game Info */
+        .game-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 80px 0;
+        }
+
+        .info-card {
+            background: rgba(20, 20, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(255, 40, 80, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 40, 80, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 40, 80, 0.1);
         }
-        
-        /* Projects Section */
-        .projects {
-            background-color: #161b22;
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff2850, #8a2be2);
         }
-        
-        .projects-grid {
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff2850;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            font-size: 20px;
+        }
+
+        .card-content {
+            color: #c0c0d0;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* Features */
+        .features {
+            margin: 80px 0;
+        }
+
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
-        
-        .project-card {
-            background-color: #21262d;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #30363d;
+
+        .feature-card {
+            background: rgba(25, 25, 35, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 3px solid #ff2850;
+            transition: all 0.3s ease;
         }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+
+        .feature-card:hover {
+            background: rgba(35, 35, 45, 0.9);
+            transform: translateX(5px);
         }
-        
-        .project-image {
-            height: 200px;
-            background-color: #0d1117;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: #58a6ff;
+
+        .feature-icon {
+            color: #8a2be2;
+            font-size: 28px;
+            margin-bottom: 15px;
         }
-        
-        .project-content {
-            padding: 25px;
-        }
-        
-        .project-title {
-            font-size: 24px;
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
             margin-bottom: 10px;
-            color: #f0f6fc;
         }
-        
-        .project-desc {
-            color: #8b949e;
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin: 100px 0;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(255, 40, 80, 0.1), rgba(138, 43, 226, 0.1));
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 40, 80, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
             margin-bottom: 20px;
         }
-        
-        .btn {
-            display: inline-block;
-            background-color: #238636;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+
+        .cta-subtitle {
+            font-size: 20px;
+            color: #b0b0c0;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
         }
-        
-        .btn:hover {
-            background-color: #2ea043;
-            transform: translateY(-2px);
-        }
-        
-        .btn-large {
-            padding: 15px 40px;
-            font-size: 18px;
-        }
-        
-        /* Social Section */
-        .social-section {
-            text-align: center;
-        }
-        
-        .social-links {
+
+        .cta-buttons {
             display: flex;
+            gap: 20px;
             justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
             flex-wrap: wrap;
         }
-        
-        .social-link {
-            display: flex;
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            color: #c9d1d9;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 15px 25px;
-            background-color: #21262d;
-            border-radius: 8px;
             transition: all 0.3s ease;
-            border: 1px solid #30363d;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .social-link:hover {
-            background-color: #30363d;
-            color: #58a6ff;
-            transform: translateY(-5px);
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff2850 0%, #8a2be2 100%);
+            color: white;
+            border: none;
         }
-        
-        .social-icon {
-            font-size: 24px;
+
+        .btn-secondary {
+            background: transparent;
+            color: #ff2850;
+            border: 2px solid #ff2850;
         }
-        
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 40, 80, 0.3);
+        }
+
         /* Footer */
         footer {
-            background-color: #161b22;
+            background: rgba(10, 10, 15, 0.95);
+            border-top: 1px solid rgba(255, 40, 80, 0.3);
             padding: 40px 0;
-            margin-top: auto;
-            border-top: 2px solid #30363d;
+            margin-top: 100px;
         }
-        
+
         .footer-content {
             display: flex;
             justify-content: space-between;
@@ -283,71 +342,73 @@
             flex-wrap: wrap;
             gap: 30px;
         }
-        
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #58a6ff;
+
+        .social-links {
+            display: flex;
+            gap: 20px;
         }
-        
+
+        .social-link {
+            color: #b0b0c0;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #ff2850;
+            transform: translateY(-3px);
+        }
+
         .copyright {
-            color: #8b949e;
-            font-size: 16px;
+            color: #666;
+            font-size: 14px;
         }
-        
-        /* News Button */
-        .news-button-container {
-            text-align: center;
-            margin: 40px 0;
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .game-info {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .hero h1 {
+            .game-title {
+                font-size: 56px;
+            }
+            
+            .game-tagline {
                 font-size: 36px;
             }
+        }
+
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 42px;
+            }
             
-            .hero p {
+            .game-tagline {
+                font-size: 28px;
+            }
+            
+            .subtitle {
                 font-size: 18px;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
             
-            nav ul {
-                gap: 15px;
-            }
-            
-            .section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 30px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-            }
-            
-            .social-links {
+            .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .social-link {
+            .btn {
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
@@ -358,205 +419,196 @@
                 text-align: center;
             }
         }
+
+        @media (max-width: 480px) {
+            .game-title {
+                font-size: 32px;
+            }
+            
+            .game-tagline {
+                font-size: 22px;
+            }
+            
+            .info-card {
+                padding: 25px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Savich<span>18</span> Games</div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="active">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#social">Social</a></li>
-                        <li><a href="news.html">NEWS</a></li>
-                    </ul>
-                </nav>
+                <div class="logo">
+                    Savich18 Games <span class="studio-tag">STUDIO</span>
+                </div>
+                <div class="pulse" style="color: #ff2850; font-weight: 600;">
+                    <i class="fas fa-circle"></i> IN DEVELOPMENT
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Main Content -->
+    <main class="main-content">
         <div class="container">
-            <h1>Welcome to Savich18 Games</h1>
-            <p>An independent indie game studio creating unique gaming experiences. Follow our journey as we develop, announce, and share updates about our games.</p>
-            <a href="#about" class="btn btn-large">Discover Our Story</a>
-        </div>
-    </section>
+            <!-- Game Header -->
+            <div class="game-header">
+                <h1 class="game-title">PROTOCOL ZERO</h1>
+                <div class="subtitle">Turn on the camera. The Kessler Foundation pays for your pain.</div>
+            </div>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">Who We Are?</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p><span class="highlight">Savich18 Games</span> is an independent indie game studio driven by passion and creativity.</p>
-                    <p>Our projects are developed primarily by a single core author with support from assistants and friends who share our vision for creating memorable gaming experiences.</p>
-                    <p>On this site, we publish news, updates, and announcements about our upcoming and current game projects. We believe in transparent development and love sharing our journey with the gaming community.</p>
-                    <p>Our focus is on creating games with engaging mechanics, compelling stories, and unique visual styles that stand out in the indie gaming landscape.</p>
+            <!-- Game Showcase -->
+            <div class="game-showcase">
+                <div class="game-image">
+                    <div class="image-overlay"></div>
+                    <div class="game-tagline">
+                        Turn on the camera. The Kessler Foundation pays for your pain.
+                    </div>
                 </div>
-                <div class="about-image">
-                    <!-- Placeholder for studio image -->
-                    <div style="background-color: #0d1117; height: 400px; display: flex; align-items: center; justify-content: center; color: #58a6ff; font-size: 24px; font-weight: bold;">
-                        <div style="text-align: center;">
-                            <i class="fas fa-gamepad" style="font-size: 60px; margin-bottom: 20px;"></i>
-                            <div>Indie Game Development</div>
+            </div>
+
+            <!-- Game Info -->
+            <div class="game-info">
+                <div class="info-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-brain"></i> THE CONCEPT
+                    </h3>
+                    <p class="card-content">
+                        Protocol Zero is a psychological horror experience that blurs the line between observer and participant. You are hired by the enigmatic Kessler Foundation to document "experimental therapy sessions" through a surveillance system. But as you watch, you realize the subjects' pain isn't just physical—it's being harvested, quantified, and commodified. Your camera isn't just recording; it's an instrument of extraction.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-eye"></i> YOUR ROLE
+                    </h3>
+                    <p class="card-content">
+                        As a remote operator, you control an advanced surveillance network. Monitor multiple subjects simultaneously, switch between camera feeds, and document critical events. The Foundation rewards you for capturing moments of extreme distress—but each decision to record pushes you deeper into ethical oblivion. How much suffering will you document for profit?
+                    </p>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features">
+                <h2 style="text-align: center; font-size: 36px; margin-bottom: 40px; color: #fff;">
+                    <span style="color: #ff2850;">FEATURES</span> & EXPERIENCE
+                </h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-video"></i>
                         </div>
+                        <h3 class="feature-title">Dynamic Surveillance System</h3>
+                        <p class="card-content">Control multiple camera angles, switch between infrared/night vision modes, and manipulate surveillance equipment in real-time.</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <h2 class="section-title">Our Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-dragon"></i>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="feature-title">Bio-Metric Monitoring</h3>
+                        <p class="card-content">Track subjects' vital signs—heart rate, stress levels, pain indicators—and optimize your recording for maximum "extraction value."</p>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Mythic Realms</h3>
-                        <p class="project-desc">An action-adventure RPG set in a fantasy world where ancient myths come to life. Explore vast landscapes, battle legendary creatures, and uncover forgotten secrets.</p>
-                        <a href="game.html" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Neon Circuit</h3>
-                        <p class="project-desc">A cyberpunk puzzle-platformer combining hacking mechanics with parkour movement. Navigate through dystopian cities and uncover corporate conspiracies.</p>
-                        <a href="game.html" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Eco-Survival</h3>
-                        <p class="project-desc">A survival simulation game set in a post-climate change world. Manage resources, build sustainable shelters, and restore balance to the ecosystem.</p>
-                        <a href="game.html" class="btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-button-container">
-                <a href="news.html" class="btn btn-large">
-                    <i class="fas fa-newspaper"></i> View All News & Updates
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Social Section -->
-    <section id="social" class="section social-section">
-        <div class="container">
-            <h2 class="section-title">Our Social Networks</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; color: #8b949e; font-size: 18px;">
-                Follow us on our social media channels to stay updated with the latest news, development progress, and announcements.
-            </p>
-            
-            <div class="social-links">
-                <a href="https://www.youtube.com/@Savich18Company" target="_blank" class="social-link">
-                    <i class="fab fa-youtube social-icon"></i>
-                    <span>YouTube: @Savich18Company</span>
-                </a>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chess-board"></i>
+                        </div>
+                        <h3 class="feature-title">Moral Choice System</h3>
+                        <p class="card-content">Every recording decision affects the narrative, character fates, and your own psychological state. Intervention has consequences.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h2 class="cta-title">WITNESS THE PROTOCOL</h2>
+                <p class="cta-subtitle">
+                    Protocol Zero is currently in active development by Savich18 Games. 
+                    Subscribe for updates on release dates, beta testing opportunities, and exclusive content.
+                </p>
                 
-                <a href="https://x.com/Savich_Company" target="_blank" class="social-link">
-                    <i class="fab fa-twitter social-icon"></i>
-                    <span>Twitter/X: @Savich_Company</span>
-                </a>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-bell"></i> NOTIFY ON RELEASE
+                    </a>
+                    <a href="https://www.youtube.com/@Savich18Company" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-youtube"></i> FOLLOW DEVELOPMENT
+                    </a>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">Savich18 Games</div>
-                <div class="copyright">
-                    &copy; 2023 Savich18 Games. All rights reserved. | Independent Indie Game Studio
+                <div class="logo">
+                    Savich18 Games
                 </div>
-                <div>
-                    <a href="news.html" class="btn">News Portal</a>
+                
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@Savich18Company" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://x.com/Savich_Company" target="_blank" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                
+                <div class="copyright">
+                    © 2024 Savich18 Games. Protocol Zero and all related content are trademarks of Savich18 Games.
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                if(targetId.startsWith('#')) {
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                } else {
-                    // For external links or pages that don't exist yet
-                    if(targetId === 'game.html' || targetId === 'news.html') {
-                        alert(`The ${targetId} page will be created later. For now, this button navigates to the placeholder.`);
-                        // In a real scenario, you would link to the actual page
-                        // window.location.href = targetId;
-                    }
-                }
+        // Add subtle hover effects
+        document.querySelectorAll('.feature-card, .info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
             });
         });
-        
-        // Add active class to current page in navigation
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('nav a').forEach(link => {
-            const linkPage = link.getAttribute('href');
-            if((currentPage === 'index.html' || currentPage === '') && linkPage === '#') {
-                link.classList.add('active');
-            } else if(linkPage === currentPage) {
-                link.classList.add('active');
+
+        // Add parallax effect to game image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const gameImage = document.querySelector('.game-image');
+            if (gameImage) {
+                gameImage.style.transform = `translateY(${scrolled * 0.05}px)`;
             }
         });
+
+        // Add typewriter effect to tagline
+        const tagline = "Turn on the camera. The Kessler Foundation pays for your pain.";
+        const taglineElement = document.querySelector('.game-tagline');
         
-        // Add animation to project cards when they come into view
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        if (taglineElement) {
+            let charIndex = 0;
+            
+            function typeWriter() {
+                if (charIndex < tagline.length) {
+                    taglineElement.innerHTML = tagline.substring(0, charIndex + 1);
+                    charIndex++;
+                    setTimeout(typeWriter, 50);
                 }
-            });
-        }, observerOptions);
-        
-        // Observe project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(card);
-        });
+            }
+            
+            // Start typing after a delay
+            setTimeout(() => {
+                taglineElement.innerHTML = '';
+                typeWriter();
+            }, 1000);
+        }
     </script>
 </body>
 </html>
