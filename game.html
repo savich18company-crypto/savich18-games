@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Zero - Savich18 Games</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 40, 80, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.05) 0%, transparent 25%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 40, 80, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ff2850;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #8a2be2;
+        }
+
+        .back-btn {
+            color: #b0b0ff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 40, 80, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 40, 80, 0.1);
+            color: #ffffff;
+        }
+
+        /* Game Header */
+        .game-header {
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .game-title {
+            font-size: 64px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff2850 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .release-date {
+            font-size: 20px;
+            color: #ff2850;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .game-tagline {
+            font-size: 24px;
+            color: #b0b0ff;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            padding: 20px;
+            border-left: 4px solid #ff2850;
+            background: rgba(255, 40, 80, 0.1);
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Main Image */
+        .game-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4287530/656e617b3d6cd090bd6f9549c897662cde01d42d/header.jpg?t=1766829002');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 15px;
+            border-left: 4px solid #ff2850;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: #ff2850;
+        }
+
+        .section-content {
+            color: #ccccff;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #ff2850;
+            font-weight: 600;
+        }
+
+        /* Gameplay Stages */
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .stage-card {
+            background: rgba(30, 30, 45, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 3px solid #8a2be2;
+            transition: all 0.3s ease;
+        }
+
+        .stage-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff2850;
+        }
+
+        .stage-number {
+            color: #ff2850;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stage-title {
+            color: #ffffff;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255, 40, 80, 0.1);
+            border: 2px solid #ff2850;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .warning-title {
+            color: #ff2850;
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Future Plans */
+        .plans-section {
+            background: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid #8a2be2;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 60px 0;
+        }
+
+        .plans-title {
+            color: #8a2be2;
+            font-size: 28px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .announcement-banner {
+            background: linear-gradient(135deg, #ff2850, #8a2be2);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .coming-soon {
+            font-size: 36px;
+            font-weight: 900;
+            color: #8a2be2;
+            margin: 40px 0 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 15, 0.95);
+            border-top: 1px solid rgba(255, 40, 80, 0.3);
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .social-link {
+            color: #b0b0ff;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #ff2850;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 42px;
+            }
+            
+            .game-tagline {
+                font-size: 20px;
+            }
+            
+            .game-image {
+                height: 300px;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-title {
+                font-size: 32px;
+            }
+            
+            .release-date {
+                font-size: 16px;
+            }
+            
+            .stages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-gamepad"></i>
+                    Savich18 Games
+                </a>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Main
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Game Header -->
+    <section class="game-header">
+        <div class="container">
+            <h1 class="game-title">PROTOCOL ZERO</h1>
+            <div class="release-date">
+                <i class="fas fa-calendar-alt"></i>
+                Planned Release: 2026
+            </div>
+            <div class="game-tagline">
+                "Turn on the camera. The Kessler Foundation pays for your pain."
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Image -->
+    <div class="container">
+        <div class="game-image"></div>
+    </div>
+
+    <!-- Project Description -->
+    <div class="container">
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-play-circle"></i>
+                The Experiment Begins
+            </h2>
+            <div class="section-content">
+                <p>You have become the first subject in the final phase of the "Protocol Zero" trials, conducted by the Kessler Foundation. The objective is to scientifically measure the limits of human self-control. The reward is substantial. The method is comprehensive monitoring.</p>
+                
+                <p>Your task is to complete four stages while adhering to absolute rules. Your body is the primary variable in this equation. This is not a game—it's an experiment in control.</p>
+            </div>
+        </div>
+
+        <!-- Gameplay -->
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-gamepad"></i>
+                Complete Tracking System
+            </h2>
+            <div class="section-content">
+                <p>This experience is only possible with an active webcam and microphone. The game analyzes your video feed and audio in real-time. Mechanics are not based on button presses but on physical stillness, movement precision, and absolute concentration.</p>
+                
+                <p>The system tracks blinking, lip movement, silhouette displacement, and hand trajectory. Every violation is a critical failure and leads to immediate termination of the experiment.</p>
+            </div>
+        </div>
+
+        <!-- Story -->
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-book"></i>
+                You Are Subject Zero
+            </h2>
+            <div class="section-content">
+                <p>You signed a contract with the foundation, known for its neurological research. You are the first and key participant. Your codename is Protocol Zero. You are not allowed to know what came before or what comes after.</p>
+                
+                <p>Throughout the trials, through voice instructions and data fragments, you will discover the true scale of the research, where subject endurance is just one of many measured parameters.</p>
+            </div>
+        </div>
+
+        <!-- Trial Stages -->
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-tasks"></i>
+                Trial Mechanics
+            </h2>
+            <div class="section-content">
+                <p>Complete four phases, each testing different aspects of your control. Violation of any rule leads to session termination.</p>
+                
+                <div class="stages-grid">
+                    <div class="stage-card">
+                        <div class="stage-number">STAGE 01</div>
+                        <h3 class="stage-title">Fixation</h3>
+                        <p>Control of reflexes. System tracks blink frequency through camera image analysis.</p>
+                    </div>
+                    
+                    <div class="stage-card">
+                        <div class="stage-number">STAGE 02</div>
+                        <h3 class="stage-title">Stillness</h3>
+                        <p>Control of body and speech. Maintain complete static posture and silence.</p>
+                    </div>
+                    
+                    <div class="stage-card">
+                        <div class="stage-number">STAGE 03</div>
+                        <h3 class="stage-title">Mirror Reflection</h3>
+                        <p>Control of memory and motor skills. Replicate gesture sequences with precision.</p>
+                    </div>
+                    
+                    <div class="stage-card">
+                        <div class="stage-number">STAGE 04</div>
+                        <h3 class="stage-title">Signal Discrimination</h3>
+                        <p>Control of attention and reaction. Respond correctly to visual signals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warning -->
+        <div class="warning-box">
+            <h3 class="warning-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                IMPORTANT: Read Before Purchase
+            </h3>
+            <div class="section-content">
+                <p>This game is not a standard horror. Its goal is not to scare you with jump scares. "Protocol Zero" is a technological simulator, a horror experiment created to show how far progress has come by 2025.</p>
+                
+                <p>For the first time in one project, gaze tracking technologies, micro-movement analysis, and real interaction with the player's environment through a webcam have been gathered and enhanced. This is not about "scary stories"—it's about how far experiments on human attention and endurance can go.</p>
+                
+                <p>The price is justified by the complexity of implemented systems. This is not an evening's entertainment, but an experience that will change how you look at your computer's camera.</p>
+                
+                <p><span class="highlight">— The Sole Developer</span></p>
+            </div>
+        </div>
+
+        <!-- Future Plans -->
+        <div class="plans-section">
+            <h2 class="plans-title">
+                <i class="fas fa-calendar-check"></i>
+                Studio Development Plans
+            </h2>
+            <div class="section-content">
+                <p><span class="highlight">2026:</span> We plan to release one project and develop a significant portion of another project that is not yet announced.</p>
+                
+                <p><span class="highlight">Current Focus:</span> Full concentration on "Protocol Zero" development, testing, and polishing.</p>
+                
+                <p><span class="highlight">Team:</span> The project is primarily developed by one main author with support from assistants and friends.</p>
+            </div>
+        </div>
+
+        <!-- New Project Announcement -->
+        <div class="cta-section">
+            <div class="announcement-banner">
+                <i class="fas fa-bullhorn"></i>
+                NEW PROJECT ANNOUNCEMENT
+            </div>
+            <h3 class="coming-soon">MAY 14</h3>
+            <p style="font-size: 20px; color: #b0b0ff; max-width: 600px; margin: 0 auto;">
+                We will announce our next project on May 14th. Stay tuned for more information!
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div style="font-size: 24px; font-weight: 700; color: #ff2850; margin-bottom: 20px;">
+                    Savich18 Games
+                </div>
+                <p style="color: #b0b0ff; max-width: 600px; margin: 0 auto;">
+                    Independent indie game studio pushing the boundaries of interactive experiences.
+                </p>
+                
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@Savich18Company" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://x.com/Savich_Company" target="_blank" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                
+                <div class="copyright">
+                    &copy; 2024 Savich18 Games. Protocol Zero and all related content are trademarks of Savich18 Games.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add scroll animation for stage cards
+        const stageCards = document.querySelectorAll('.stage-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if(entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        stageCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Update year for copyright
+        document.addEventListener('DOMContentLoaded', () => {
+            const year = new Date().getFullYear();
+            const copyrightElement = document.querySelector('.copyright');
+            if(copyrightElement) {
+                copyrightElement.innerHTML = copyrightElement.innerHTML.replace('2024', year);
+            }
+        });
+    </script>
+</body>
+</html>
