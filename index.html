@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savich18 Games - Indie Game Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0d1117;
+            color: #f0f6fc;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #161b22;
+            padding: 20px 0;
+            border-bottom: 2px solid #30363d;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #58a6ff;
+        }
+        
+        .logo span {
+            color: #f78166;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #238636;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.9)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #f0f6fc;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #8b949e;
+        }
+        
+        .highlight {
+            color: #58a6ff;
+            font-weight: 700;
+        }
+        
+        /* About Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #f0f6fc;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #238636, #58a6ff);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #8b949e;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Projects Section */
+        .projects {
+            background-color: #161b22;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background-color: #21262d;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #30363d;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: #0d1117;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #58a6ff;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #f0f6fc;
+        }
+        
+        .project-desc {
+            color: #8b949e;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #238636;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #2ea043;
+            transform: translateY(-2px);
+        }
+        
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+        
+        /* Social Section */
+        .social-section {
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 15px 25px;
+            background-color: #21262d;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid #30363d;
+        }
+        
+        .social-link:hover {
+            background-color: #30363d;
+            color: #58a6ff;
+            transform: translateY(-5px);
+        }
+        
+        .social-icon {
+            font-size: 24px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #161b22;
+            padding: 40px 0;
+            margin-top: auto;
+            border-top: 2px solid #30363d;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #58a6ff;
+        }
+        
+        .copyright {
+            color: #8b949e;
+            font-size: 16px;
+        }
+        
+        /* News Button */
+        .news-button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Savich<span>18</span> Games</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#social">Social</a></li>
+                        <li><a href="news.html">NEWS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to Savich18 Games</h1>
+            <p>An independent indie game studio creating unique gaming experiences. Follow our journey as we develop, announce, and share updates about our games.</p>
+            <a href="#about" class="btn btn-large">Discover Our Story</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Who We Are?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><span class="highlight">Savich18 Games</span> is an independent indie game studio driven by passion and creativity.</p>
+                    <p>Our projects are developed primarily by a single core author with support from assistants and friends who share our vision for creating memorable gaming experiences.</p>
+                    <p>On this site, we publish news, updates, and announcements about our upcoming and current game projects. We believe in transparent development and love sharing our journey with the gaming community.</p>
+                    <p>Our focus is on creating games with engaging mechanics, compelling stories, and unique visual styles that stand out in the indie gaming landscape.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder for studio image -->
+                    <div style="background-color: #0d1117; height: 400px; display: flex; align-items: center; justify-content: center; color: #58a6ff; font-size: 24px; font-weight: bold;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-gamepad" style="font-size: 60px; margin-bottom: 20px;"></i>
+                            <div>Indie Game Development</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">Our Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mythic Realms</h3>
+                        <p class="project-desc">An action-adventure RPG set in a fantasy world where ancient myths come to life. Explore vast landscapes, battle legendary creatures, and uncover forgotten secrets.</p>
+                        <a href="game.html" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Neon Circuit</h3>
+                        <p class="project-desc">A cyberpunk puzzle-platformer combining hacking mechanics with parkour movement. Navigate through dystopian cities and uncover corporate conspiracies.</p>
+                        <a href="game.html" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Eco-Survival</h3>
+                        <p class="project-desc">A survival simulation game set in a post-climate change world. Manage resources, build sustainable shelters, and restore balance to the ecosystem.</p>
+                        <a href="game.html" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="news-button-container">
+                <a href="news.html" class="btn btn-large">
+                    <i class="fas fa-newspaper"></i> View All News & Updates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section id="social" class="section social-section">
+        <div class="container">
+            <h2 class="section-title">Our Social Networks</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; color: #8b949e; font-size: 18px;">
+                Follow us on our social media channels to stay updated with the latest news, development progress, and announcements.
+            </p>
+            
+            <div class="social-links">
+                <a href="https://www.youtube.com/@Savich18Company" target="_blank" class="social-link">
+                    <i class="fab fa-youtube social-icon"></i>
+                    <span>YouTube: @Savich18Company</span>
+                </a>
+                
+                <a href="https://x.com/Savich_Company" target="_blank" class="social-link">
+                    <i class="fab fa-twitter social-icon"></i>
+                    <span>Twitter/X: @Savich_Company</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Savich18 Games</div>
+                <div class="copyright">
+                    &copy; 2023 Savich18 Games. All rights reserved. | Independent Indie Game Studio
+                </div>
+                <div>
+                    <a href="news.html" class="btn">News Portal</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                if(targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    // For external links or pages that don't exist yet
+                    if(targetId === 'game.html' || targetId === 'news.html') {
+                        alert(`The ${targetId} page will be created later. For now, this button navigates to the placeholder.`);
+                        // In a real scenario, you would link to the actual page
+                        // window.location.href = targetId;
+                    }
+                }
+            });
+        });
+        
+        // Add active class to current page in navigation
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a').forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if((currentPage === 'index.html' || currentPage === '') && linkPage === '#') {
+                link.classList.add('active');
+            } else if(linkPage === currentPage) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Add animation to project cards when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
