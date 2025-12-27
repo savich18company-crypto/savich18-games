@@ -31,7 +31,7 @@
         header {
             background: rgba(15, 15, 26, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(100, 100, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 40, 80, 0.3);
             position: fixed;
             width: 100%;
             top: 0;
@@ -48,7 +48,7 @@
         .logo {
             font-size: 28px;
             font-weight: 800;
-            color: #6464ff;
+            color: #ff2850;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -56,7 +56,7 @@
         }
 
         .logo i {
-            color: #ff6464;
+            color: #8a2be2;
         }
 
         nav ul {
@@ -76,7 +76,7 @@
         }
 
         nav a:hover, nav a.active {
-            background: rgba(100, 100, 255, 0.2);
+            background: rgba(255, 40, 80, 0.2);
             color: #ffffff;
         }
 
@@ -91,7 +91,7 @@
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #6464ff, #ff6464);
+            background: linear-gradient(90deg, #ff2850, #8a2be2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -122,7 +122,7 @@
             display: block;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, #6464ff, #ff6464);
+            background: linear-gradient(90deg, #ff2850, #8a2be2);
             margin: 15px auto;
             border-radius: 2px;
         }
@@ -142,7 +142,7 @@
         }
 
         .highlight {
-            color: #6464ff;
+            color: #ff2850;
             font-weight: 600;
         }
 
@@ -158,77 +158,100 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6464ff;
+            color: #ff2850;
             font-size: 20px;
         }
 
-        /* Projects Section */
-        .projects {
+        /* Single Project Section */
+        .single-project {
             background: rgba(26, 26, 46, 0.5);
+            padding: 60px 0;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .project-card {
-            background: rgba(30, 30, 50, 0.8);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(100, 100, 255, 0.1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(100, 100, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(100, 100, 255, 0.1);
+        .project-showcase {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .project-image {
-            height: 180px;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6464ff;
-            font-size: 48px;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4287530/656e617b3d6cd090bd6f9549c897662cde01d42d/header.jpg?t=1766829002');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
-        .project-content {
-            padding: 25px;
+        .project-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(15, 15, 26, 0.8), transparent);
+        }
+
+        .project-info {
+            text-align: left;
+            background: rgba(30, 30, 50, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 40, 80, 0.2);
         }
 
         .project-title {
-            font-size: 22px;
+            font-size: 32px;
             color: #ffffff;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .project-desc {
+        .project-title i {
+            color: #ff2850;
+        }
+
+        .project-description {
             color: #b0b0ff;
-            font-size: 16px;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .project-status {
+            display: inline-block;
+            background: rgba(255, 40, 80, 0.2);
+            color: #ff2850;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
             margin-bottom: 20px;
-            line-height: 1.6;
         }
 
         .project-link {
-            display: inline-block;
-            color: #6464ff;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #ff2850, #8a2be2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            padding: 8px 20px;
-            border: 2px solid #6464ff;
-            border-radius: 8px;
             transition: all 0.3s ease;
         }
 
         .project-link:hover {
-            background: #6464ff;
-            color: #0f0f1a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 40, 80, 0.3);
         }
 
         /* Social Section */
@@ -250,17 +273,17 @@
             border-radius: 15px;
             width: 300px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(100, 100, 255, 0.1);
+            border: 1px solid rgba(255, 40, 80, 0.1);
         }
 
         .social-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(100, 100, 255, 0.3);
+            border-color: rgba(255, 40, 80, 0.3);
         }
 
         .social-icon {
             font-size: 40px;
-            color: #ff6464;
+            color: #ff2850;
             margin-bottom: 15px;
         }
 
@@ -271,7 +294,7 @@
         }
 
         .social-link {
-            color: #6464ff;
+            color: #8a2be2;
             text-decoration: none;
             font-size: 16px;
             word-break: break-all;
@@ -279,6 +302,7 @@
 
         .social-link:hover {
             text-decoration: underline;
+            color: #ff2850;
         }
 
         /* News Button */
@@ -292,7 +316,7 @@
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            background: linear-gradient(135deg, #6464ff, #ff6464);
+            background: linear-gradient(135deg, #ff2850, #8a2be2);
             color: white;
             padding: 18px 40px;
             border-radius: 12px;
@@ -304,13 +328,13 @@
 
         .news-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(100, 100, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(255, 40, 80, 0.3);
         }
 
         /* Footer */
         footer {
             background: rgba(15, 15, 26, 0.95);
-            border-top: 1px solid rgba(100, 100, 255, 0.2);
+            border-top: 1px solid rgba(255, 40, 80, 0.2);
             padding: 40px 0;
             margin-top: 60px;
         }
@@ -321,7 +345,7 @@
 
         .footer-logo {
             font-size: 24px;
-            color: #6464ff;
+            color: #ff2850;
             margin-bottom: 20px;
             font-weight: 700;
         }
@@ -345,6 +369,10 @@
             
             .hero-subtitle {
                 font-size: 20px;
+            }
+            
+            .project-image {
+                height: 300px;
             }
         }
 
@@ -370,6 +398,10 @@
                 width: 100%;
                 max-width: 300px;
             }
+            
+            .project-title {
+                font-size: 24px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -384,6 +416,10 @@
             
             .hero-subtitle {
                 font-size: 18px;
+            }
+            
+            .project-image {
+                height: 200px;
             }
         }
     </style>
@@ -401,7 +437,7 @@
                     <ul>
                         <li><a href="#" class="active">Home</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#project">Project</a></li>
                         <li><a href="#social">Social</a></li>
                         <li><a href="news.html">NEWS</a></li>
                     </ul>
@@ -442,24 +478,35 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
+    <!-- Single Project Section -->
+    <section id="project" class="section single-project">
         <div class="container">
-            <h2 class="section-title">Our Projects & Releases</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
+            <h2 class="section-title">Our Current Project</h2>
+            <div class="project-showcase">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <h3 class="project-title">
                         <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Protocol Zero</h3>
-                        <p class="project-desc">A psychological horror experience that blurs the line between observer and participant.</p>
-                        <a href="game.html" class="project-link">View Details</a>
-                    </div>
+                        Protocol Zero
+                    </h3>
+                    <span class="project-status">IN DEVELOPMENT</span>
+                    <p class="project-description">
+                        A psychological horror experience that blurs the line between observer and participant. 
+                        You are hired by the enigmatic Kessler Foundation to document experimental therapy sessions 
+                        through a surveillance system. But as you watch, you realize the subjects' pain isn't just 
+                        physical—it's being harvested, quantified, and commodified.
+                    </p>
+                    <p class="project-description" style="font-style: italic; color: #ff2850; border-left: 3px solid #ff2850; padding-left: 15px;">
+                        "Turn on the camera. The Kessler Foundation pays for your pain."
+                    </p>
+                    <a href="game.html" class="project-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Project Details
+                    </a>
                 </div>
-                            </div>
+            </div>
         </div>
-            </section>
+    </section>
 
     <!-- Social Section -->
     <section id="social" class="section social-section">
@@ -562,15 +609,14 @@
             });
         });
 
-        // Project card hover effect enhancement
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-12px) scale(1.02)';
-            });
+        // Project image parallax effect
+        window.addEventListener('scroll', () => {
+            const projectImage = document.querySelector('.project-image');
+            const scrolled = window.pageYOffset;
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
+            if(projectImage) {
+                projectImage.style.transform = `translateY(${scrolled * 0.05}px)`;
+            }
         });
     </script>
 </body>
