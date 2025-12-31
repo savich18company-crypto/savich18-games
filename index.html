@@ -6,37 +6,75 @@
     <title>Savich18 Games - Independent Game Studio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #dc143c;
+            --secondary: #8a2be2;
+            --dark: #050505;
+            --darker: #020202;
+            --light: #f5f5f5;
+            --gray: rgba(255, 255, 255, 0.1);
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background: #0f0f1a;
-            color: #ffffff;
-            line-height: 1.6;
+            background: var(--darker);
+            color: var(--light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.8;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Premium Background */
+        .background-effects {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            pointer-events: none;
         }
 
-        /* Header */
+        .gradient-mesh {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(220, 20, 60, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.02) 0%, transparent 40%),
+                linear-gradient(135deg, var(--darker) 0%, #080808 100%);
+        }
+
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        /* Header - Premium */
         header {
-            background: rgba(15, 15, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 40, 80, 0.3);
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            background: rgba(2, 2, 2, 0.92);
+            backdrop-filter: blur(40px) saturate(300%);
+            -webkit-backdrop-filter: blur(40px) saturate(300%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             z-index: 1000;
-            padding: 20px 0;
+            padding: 28px 0;
         }
 
         .header-content {
@@ -46,17 +84,40 @@
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: #ff2850;
+            font-size: 26px;
+            font-weight: 700;
+            color: transparent;
+            background: linear-gradient(135deg, var(--light), rgba(255, 255, 255, 0.8));
+            -webkit-background-clip: text;
+            background-clip: text;
             text-decoration: none;
+            letter-spacing: 0.8px;
+            position: relative;
+            padding: 8px 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .logo i {
-            color: #8a2be2;
+        .logo-icon {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .logo-line {
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s cubic-bezier(0.87, 0, 0.13, 1);
+        }
+
+        .logo:hover .logo-line {
+            transform: scaleX(1);
         }
 
         nav ul {
@@ -66,192 +127,298 @@
         }
 
         nav a {
-            color: #b0b0ff;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            padding: 8px 16px;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 10px 20px;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(138, 43, 226, 0.1));
+            opacity: 0;
+            transition: var(--transition);
         }
 
         nav a:hover, nav a.active {
-            background: rgba(255, 40, 80, 0.2);
-            color: #ffffff;
+            color: var(--light);
+        }
+
+        nav a:hover::before, nav a.active::before {
+            opacity: 1;
         }
 
         /* Hero Section */
-        .hero {
-            padding-top: 120px;
-            padding-bottom: 80px;
-            text-align: center;
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #ff2850, #8a2be2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 24px;
-            color: #b0b0ff;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            line-height: 1.5;
-        }
-
-        /* About Section */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 36px;
-            margin-bottom: 40px;
-            color: #ffffff;
+        .hero-section {
+            padding-top: 140px;
+            padding-bottom: 100px;
             text-align: center;
             position: relative;
         }
 
-        .section-title:after {
+        .hero-title {
+            font-size: 84px;
+            font-weight: 200;
+            letter-spacing: 1px;
+            color: transparent;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.4;
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .section-title::after {
             content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, #ff2850, #8a2be2);
-            margin: 15px auto;
-            border-radius: 2px;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
+        }
+
+        .about-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 19px;
+            line-height: 1.9;
+            font-weight: 300;
         }
 
         .about-text p {
-            font-size: 18px;
-            color: #ccccff;
-            margin-bottom: 20px;
-            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
         .highlight {
-            color: #ff2850;
-            font-weight: 600;
+            color: var(--primary);
+            font-weight: 500;
+            position: relative;
         }
 
-        .studio-image {
-            border-radius: 15px;
+        .studio-visual {
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .studio-placeholder {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            height: 300px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.02),
+                rgba(138, 43, 226, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ff2850;
-            font-size: 20px;
+            min-height: 400px;
+            position: relative;
         }
 
-        /* Single Project Section */
-        .single-project {
-            background: rgba(26, 26, 46, 0.5);
-            padding: 60px 0;
+        .studio-icon {
+            font-size: 80px;
+            color: var(--primary);
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .studio-tag {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Project Section */
+        .project-section {
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 46, 0.3),
+                rgba(2, 2, 2, 0.9));
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .project-showcase {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .project-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4287530/656e617b3d6cd090bd6f9549c897662cde01d42d/header.jpg?t=1766829002');
-            background-size: cover;
-            background-position: center;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        .project-visual {
             position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, 
+                rgba(220, 20, 60, 0.05),
+                rgba(138, 43, 226, 0.05));
+            border-radius: 20px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .project-image::after {
+        .project-title-main {
+            font-size: 56px;
+            font-weight: 300;
+            color: transparent;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.9),
+                rgba(255, 255, 255, 0.6));
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .project-title-main::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, rgba(15, 15, 26, 0.8), transparent);
+            display: block;
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(220, 20, 60, 0.5),
+                transparent);
+            margin: 20px auto;
         }
 
         .project-info {
-            text-align: left;
-            background: rgba(30, 30, 50, 0.8);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 40, 80, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
         }
 
-        .project-title {
-            font-size: 32px;
-            color: #ffffff;
-            margin-bottom: 15px;
+        .project-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .project-title i {
-            color: #ff2850;
+        .project-name {
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .project-description {
-            color: #b0b0ff;
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 25px;
+        .project-icon {
+            color: var(--primary);
+            font-size: 24px;
         }
 
         .project-status {
-            display: inline-block;
-            background: rgba(255, 40, 80, 0.2);
-            color: #ff2850;
-            padding: 8px 20px;
+            background: rgba(220, 20, 60, 0.1);
+            color: var(--primary);
+            padding: 10px 25px;
             border-radius: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 19px;
+            line-height: 1.9;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .project-quote {
+            color: var(--primary);
+            font-size: 22px;
+            font-style: italic;
+            line-height: 1.6;
+            padding: 30px;
+            background: rgba(220, 20, 60, 0.05);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            margin: 40px 0;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #ff2850, #8a2be2);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
+            gap: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 16px 40px;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 17px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
         }
 
         .project-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 40, 80, 0.3);
+            box-shadow: 0 15px 30px rgba(220, 20, 60, 0.2);
+        }
+
+        .project-link:hover::before {
+            opacity: 1;
         }
 
         /* Social Section */
@@ -259,84 +426,106 @@
             text-align: center;
         }
 
-        .social-links {
+        .social-grid {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
+            gap: 40px;
+            margin-top: 60px;
             flex-wrap: wrap;
         }
 
         .social-card {
-            background: rgba(30, 30, 50, 0.8);
-            padding: 30px;
-            border-radius: 15px;
-            width: 300px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 40, 80, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            width: 320px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
 
         .social-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 40, 80, 0.3);
+            transform: translateY(-10px);
+            border-color: rgba(220, 20, 60, 0.3);
+            background: rgba(220, 20, 60, 0.03);
         }
 
         .social-icon {
-            font-size: 40px;
-            color: #ff2850;
-            margin-bottom: 15px;
+            font-size: 42px;
+            color: var(--primary);
+            margin-bottom: 25px;
         }
 
         .social-name {
-            font-size: 20px;
-            color: #ffffff;
-            margin-bottom: 10px;
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--light);
+            margin-bottom: 15px;
         }
 
-        .social-link {
-            color: #8a2be2;
+        .social-handle {
+            color: var(--secondary);
             text-decoration: none;
-            font-size: 16px;
+            font-size: 17px;
             word-break: break-all;
+            transition: var(--transition);
         }
 
-        .social-link:hover {
-            text-decoration: underline;
-            color: #ff2850;
+        .social-handle:hover {
+            color: var(--primary);
         }
 
-        /* News Button */
+        /* News Section */
         .news-section {
             text-align: center;
-            padding: 60px 0;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.5), rgba(15, 15, 26, 0.5));
+            padding: 100px 0;
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 46, 0.2),
+                rgba(2, 2, 2, 0.9));
+            border-radius: 30px;
+            margin: 100px 0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .news-btn {
+        .news-button {
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            background: linear-gradient(135deg, #ff2850, #8a2be2);
-            color: white;
-            padding: 18px 40px;
+            gap: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 20px 50px;
             border-radius: 12px;
             text-decoration: none;
             font-size: 20px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .news-btn:hover {
+        .news-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .news-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 40, 80, 0.3);
+            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.3);
+        }
+
+        .news-button:hover::before {
+            opacity: 1;
         }
 
         /* Footer */
         footer {
-            background: rgba(15, 15, 26, 0.95);
-            border-top: 1px solid rgba(255, 40, 80, 0.2);
-            padding: 40px 0;
-            margin-top: 60px;
+            margin-top: 120px;
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .footer-content {
@@ -344,101 +533,138 @@
         }
 
         .footer-logo {
-            font-size: 24px;
-            color: #ff2850;
-            margin-bottom: 20px;
+            font-size: 26px;
             font-weight: 700;
+            color: transparent;
+            background: linear-gradient(135deg, var(--light), rgba(255, 255, 255, 0.8));
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            display: inline-block;
         }
 
         .copyright {
-            color: #b0b0ff;
+            color: rgba(255, 255, 255, 0.3);
             font-size: 14px;
-            margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-top: 40px;
         }
 
         /* Responsive */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 40px;
+            }
+            
+            .hero-title {
+                font-size: 68px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+                letter-spacing: 4px;
+            }
+            
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
             
-            .hero h1 {
+            .project-visual {
+                height: 300px;
+            }
+            
+            .project-title-main {
                 font-size: 36px;
             }
             
-            .hero-subtitle {
-                font-size: 20px;
-            }
-            
-            .project-image {
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 20px;
             }
             
             nav ul {
-                gap: 15px;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
             }
             
-            .section {
-                padding: 60px 0;
+            .hero-title {
+                font-size: 36px;
             }
             
-            .section-title {
-                font-size: 30px;
+            .project-visual {
+                height: 250px;
             }
             
             .social-card {
                 width: 100%;
-                max-width: 300px;
             }
             
-            .project-title {
-                font-size: 24px;
+            .news-button {
+                padding: 18px 30px;
+                font-size: 18px;
             }
         }
 
-        @media (max-width: 576px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .hero-subtitle {
-                font-size: 18px;
-            }
-            
-            .project-image {
-                height: 200px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.6s; opacity: 0; }
     </style>
 </head>
 <body>
+    <div class="background-effects">
+        <div class="gradient-mesh"></div>
+        <div class="grid-pattern"></div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">
-                    <i class="fas fa-gamepad"></i>
-                    Savich18 Games
+                <a href="index.html" class="logo fade-in">
+                    <i class="fas fa-gamepad logo-icon"></i>
+                    SAVICH18 GAMES
+                    <div class="logo-line"></div>
                 </a>
                 <nav>
                     <ul>
-                        <li><a href="#" class="active">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#project">Project</a></li>
-                        <li><a href="#social">Social</a></li>
+                        <li><a href="#home" class="active">HOME</a></li>
+                        <li><a href="#about">ABOUT</a></li>
+                        <li><a href="#project">PROJECT</a></li>
+                        <li><a href="#social">SOCIAL</a></li>
                         <li><a href="news.html">NEWS</a></li>
                     </ul>
                 </nav>
@@ -447,61 +673,73 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero-section">
         <div class="container">
-            <h1>Savich18 Games</h1>
-            <p class="hero-subtitle">Independent indie game studio creating unique gaming experiences with passion and dedication</p>
+            <h1 class="hero-title fade-in">SAVICH18 GAMES</h1>
+            <div class="hero-subtitle fade-in delay-1">
+                INDEPENDENT STUDIO CREATING UNIQUE GAMING EXPERIENCES
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">Who We Are?</h2>
+            <div class="section-header fade-in">
+                <h2 class="section-title">Who We Are?</h2>
+            </div>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text fade-in delay-1">
                     <p><span class="highlight">Savich18 Games</span> is an independent indie game studio focused on creating memorable gaming experiences.</p>
                     <p>Our projects are primarily developed by one main author with support from assistants and friends who share our vision.</p>
                     <p>Here we publish news, updates, and announcements about our games. We believe in transparency and enjoy sharing our development journey with the gaming community.</p>
                     <p>We specialize in games with unique mechanics, compelling stories, and distinctive visual styles that stand out in the indie gaming scene.</p>
                     <p>Every project we create is a labor of love, combining innovative gameplay with artistic expression to deliver experiences that resonate with players.</p>
                 </div>
-                <div class="studio-image">
-                    <div class="studio-placeholder">
-                        <div style="text-align: center;">
-                            <i class="fas fa-code-branch" style="font-size: 60px; margin-bottom: 20px;"></i>
-                            <div>Indie Game Development Studio</div>
-                        </div>
+                <div class="studio-visual fade-in delay-2">
+                    <div style="text-align: center;">
+                        <i class="fas fa-code-branch studio-icon"></i>
+                        <div class="studio-tag">INDIE GAME DEVELOPMENT STUDIO</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Single Project Section -->
-    <section id="project" class="section single-project">
+    <!-- Project Section -->
+    <section id="project" class="section project-section">
         <div class="container">
-            <h2 class="section-title">Our Current Project</h2>
+            <div class="section-header fade-in">
+                <h2 class="section-title">Our Current Project</h2>
+            </div>
             <div class="project-showcase">
-                <div class="project-image"></div>
-                <div class="project-info">
-                    <h3 class="project-title">
-                        <i class="fas fa-robot"></i>
-                        The subject: Protocol zero
-                    </h3>
-                    <span class="project-status">IN DEVELOPMENT</span>
-                    <p class="project-description">
+                <div class="project-visual fade-in delay-1">
+                    <div class="project-title-main">
+                        THE SUBJECT:<br>PROTOCOL ZERO
+                    </div>
+                </div>
+                <div class="project-info fade-in delay-2">
+                    <div class="project-header">
+                        <h3 class="project-name">
+                            <i class="fas fa-robot project-icon"></i>
+                            Protocol Zero
+                        </h3>
+                        <div class="project-status">
+                            IN DEVELOPMENT
+                        </div>
+                    </div>
+                    <div class="project-description">
                         Turn on your camera. The Kessler Foundation pays for your pain.
                         The game uses your webcam and microphone, turning your room into a laboratory.
-                        Complete 4 stages: from not blinking to playing “Green Light, Red Light.” 
+                        Complete 4 stages: from not blinking to playing "Green Light, Red Light." 
                         Money or sanity? Be the first to complete Protocol Zero. If you dare.
-                    </p>
-                    <p class="project-description" style="font-style: italic; color: #ff2850; border-left: 3px solid #ff2850; padding-left: 15px;">
+                    </div>
+                    <div class="project-quote">
                         "Turn on the camera. The Kessler Foundation pays for your pain."
-                    </p>
+                    </div>
                     <a href="game.html" class="project-link">
                         <i class="fas fa-external-link-alt"></i>
-                        View Project Details
+                        VIEW PROJECT DETAILS
                     </a>
                 </div>
             </div>
@@ -511,28 +749,29 @@
     <!-- Social Section -->
     <section id="social" class="section social-section">
         <div class="container">
-            <h2 class="section-title">Our Social Networks</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; color: #b0b0ff; font-size: 18px;">
-                Follow us to stay updated with the latest news, development progress, and announcements.
-            </p>
-            
-            <div class="social-links">
-                <div class="social-card">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Our Social Networks</h2>
+                <p style="color: rgba(255, 255, 255, 0.6); font-size: 18px; max-width: 600px; margin: 20px auto 0; font-weight: 300;">
+                    Follow us to stay updated with the latest news, development progress, and announcements.
+                </p>
+            </div>
+            <div class="social-grid">
+                <div class="social-card fade-in delay-1">
                     <div class="social-icon">
                         <i class="fab fa-youtube"></i>
                     </div>
                     <h3 class="social-name">YouTube</h3>
-                    <a href="https://www.youtube.com/@Savich18Company" target="_blank" class="social-link">
+                    <a href="https://www.youtube.com/@Savich18Company" target="_blank" class="social-handle">
                         @Savich18Company
                     </a>
                 </div>
                 
-                <div class="social-card">
+                <div class="social-card fade-in delay-2">
                     <div class="social-icon">
                         <i class="fab fa-twitter"></i>
                     </div>
                     <h3 class="social-name">Twitter / X</h3>
-                    <a href="https://x.com/Savich_Company" target="_blank" class="social-link">
+                    <a href="https://x.com/Savich_Company" target="_blank" class="social-handle">
                         @Savich_Company
                     </a>
                 </div>
@@ -541,11 +780,11 @@
     </section>
 
     <!-- News Button -->
-    <section class="news-section">
+    <section class="news-section fade-in delay-3">
         <div class="container">
-            <a href="news.html" class="news-btn">
+            <a href="news.html" class="news-button">
                 <i class="fas fa-newspaper"></i>
-                View All News & Updates
+                VIEW ALL NEWS & UPDATES
             </a>
         </div>
     </section>
@@ -554,26 +793,33 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    Savich18 Games
+                <div class="footer-logo fade-in">
+                    SAVICH18 GAMES
                 </div>
-                <p style="color: #b0b0ff; max-width: 600px; margin: 0 auto;">
+                <p style="color: rgba(255, 255, 255, 0.5); font-size: 17px; max-width: 600px; margin: 0 auto; font-weight: 300;">
                     Independent indie game studio creating unique gaming experiences since 2023.
                 </p>
-                <div class="copyright">
-                    &copy; 2024 Savich18 Games. All rights reserved.
+                <div class="copyright fade-in delay-1">
+                    © 2024 SAVICH18 GAMES. ALL RIGHTS RESERVED.
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href').startsWith('#')) {
+        // Update copyright year
+        document.addEventListener('DOMContentLoaded', () => {
+            const year = new Date().getFullYear();
+            document.querySelector('.copyright').textContent = 
+                document.querySelector('.copyright').textContent.replace('2024', year);
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
                     const targetElement = document.querySelector(targetId);
                     if(targetElement) {
                         window.scrollTo({
@@ -581,42 +827,43 @@
                             behavior: 'smooth'
                         });
                     }
-                }
+                });
             });
-        });
 
-        // Update active nav link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const scrollPosition = window.scrollY + 150;
+            // Update active nav on scroll
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
             
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPosition = window.scrollY + 150;
                 
-                if(scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if(scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
             });
-            
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if(link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
 
-        // Project image parallax effect
-        window.addEventListener('scroll', () => {
-            const projectImage = document.querySelector('.project-image');
-            const scrolled = window.pageYOffset;
-            
-            if(projectImage) {
-                projectImage.style.transform = `translateY(${scrolled * 0.05}px)`;
-            }
+            // Parallax effect for project visual
+            const projectVisual = document.querySelector('.project-visual');
+            window.addEventListener('scroll', () => {
+                if(projectVisual) {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * 0.05;
+                    projectVisual.style.transform = `translateY(${rate}px)`;
+                }
+            });
         });
     </script>
 </body>
